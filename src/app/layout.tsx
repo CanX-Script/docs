@@ -34,14 +34,11 @@ const navbar = (
         }
         chatLink="https://discord.gg/h4rdNKnEM6"
         projectLink="https://github.com/canx-script"
-        children={
-            <>
-                <Link href="https://canx.tebex.io" className="text-white">
-                    <FaStore className="text-2xl" />
-                </Link>
-            </>
-        }
-    />
+    >
+        <Link href="https://canx.tebex.io" className="text-white">
+            <FaStore className="text-2xl" />
+        </Link>
+    </Navbar>
 );
 const footer = <Footer>{new Date().getFullYear()} © CanX Scripts</Footer>;
 
