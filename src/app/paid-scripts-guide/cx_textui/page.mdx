@@ -1,0 +1,82 @@
+# cx_textui
+
+import { Image } from "nextra/components";
+
+<div
+    className="flex items-center justify-center gap-x-2 my-10"
+    data-full-width="false"
+>
+    <Image src={"/cx_textui.png"} alt="Textui preview" />
+    <Image src={"/cx_textui2.png"} alt="Textui preview" />
+</div>
+
+## Installation and Usage
+
+### Displaying
+
+```lua
+exports.["cx_textui"]:Open("E","OPEN CLOTHING","#fff","bottom")
+-- Open(key,message,color,position)
+```
+
+### Hiding&#x20;
+
+```lua
+exports.["cx_textui"]:Close()
+```
+
+## 🔼 Positions
+
+`top` - `bottom` - `right` - `left`
+
+## 🎨Color
+
+Any Hex Color
+
+## ⚙ Config
+
+Default Position and Color
+
+```lua
+uiConfig = {
+    position = "bottom",
+    defaultcolor = "#4d0dff"
+}
+```
+
+## Example&#x20;
+
+```lua
+local shown = false
+local inDistance = false
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(0)
+        inDistance = false
+        local coords = GetEntityCoords(PlayerPedId())
+        local distance = #(coords - vector3(-457.753845, -670.588989, 32.093750))
+		DrawMarker(3, -457.753845, -670.588989, 32.093750, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 1.0, 1.0, 1.0, 50, 50, 255, 90, false, true, 2, nil, nil, false)
+        if distance <= 1 then
+            inDistance = true
+            -- Your Code Goes Here
+        else
+            inDistance = false
+            -- Your Code Goes Here
+        end
+
+        if not shown and inDistance then
+            exports.cx_textui:Open(
+                "TAB",
+                "OPEN MENU",
+		"#fff",
+		"bottom"
+            )
+            shown = true
+        elseif shown and not inDistance then
+            exports.cx_textui:Close()
+            shown = false
+        end
+    end
+end)
+```
